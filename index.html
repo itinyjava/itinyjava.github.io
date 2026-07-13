@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>iTinyJava — Tiny Games, Well Brewed</title>
+  <meta name="description" content="iTinyJava is an independent mobile game studio making small, polished puzzle games for Android. Home of Klozzo: Block Puzzle.">
+  <!-- Google Search Console verification tag goes here when needed -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <meta property="og:title" content="iTinyJava — Tiny Games, Well Brewed">
+  <meta property="og:description" content="Independent mobile game studio making small, polished puzzle games. Home of Klozzo: Block Puzzle.">
+  <meta property="og:url" content="https://itinyjava.github.io/">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0d1322;
+      --bg-raise: #151b2e;
+      --bg-card: #1a2138;
+      --line: #2a3352;
+      --ink: #e8ebf5;
+      --ink-dim: #8b93ad;
+      --amber: #ffb454;
+      --amber-deep: #e07b28;
+      --font-pixel: 'Silkscreen', monospace;
+      --font-body: 'Instrument Sans', sans-serif;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--font-body);
+      font-size: 17px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    /* faint pixel-grid atmosphere */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--line) 1px, transparent 1px);
+      background-size: 48px 48px;
+      opacity: 0.14;
+      pointer-events: none;
+      mask-image: radial-gradient(ellipse 90% 60% at 50% 0%, black, transparent 75%);
+      -webkit-mask-image: radial-gradient(ellipse 90% 60% at 50% 0%, black, transparent 75%);
+    }
+    .wrap { max-width: 880px; margin: 0 auto; padding: 0 24px; position: relative; }
+
+    /* ---------- hero ---------- */
+    header { padding: 88px 0 72px; text-align: center; }
+    .mark {
+      width: 96px; height: 96px;
+      image-rendering: pixelated;
+      margin-bottom: 28px;
+      animation: rise 0.7s ease-out both;
+    }
+    .studio-name {
+      font-family: var(--font-pixel);
+      font-weight: 700;
+      font-size: clamp(1.8rem, 6vw, 3rem);
+      letter-spacing: 0.02em;
+      animation: rise 0.7s ease-out 0.12s both;
+    }
+    .studio-name .accent { color: var(--amber); }
+    .tagline {
+      margin-top: 14px;
+      color: var(--ink-dim);
+      font-size: 1.15rem;
+      animation: rise 0.7s ease-out 0.24s both;
+    }
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: none; }
+    }
+
+    /* ---------- sections ---------- */
+    section { padding: 56px 0; }
+    .section-label {
+      font-family: var(--font-pixel);
+      font-size: 0.85rem;
+      color: var(--amber);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-bottom: 28px;
+    }
+    .section-label::before { content: "▸ "; }
+
+    /* ---------- game card ---------- */
+    .game-card {
+      display: flex;
+      gap: 24px;
+      align-items: flex-start;
+      background: var(--bg-card);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 28px;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+    }
+    .game-card img.game-icon {
+      width: 88px; height: 88px;
+      border-radius: 20px;
+      flex-shrink: 0;
+      border: 1px solid var(--line);
+    }
+    .game-card h3 {
+      font-family: var(--font-pixel);
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .game-card .status {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: #7ee08a;
+      background: rgba(126, 224, 138, 0.1);
+      border: 1px solid rgba(126, 224, 138, 0.25);
+      border-radius: 99px;
+      padding: 2px 12px;
+      margin-bottom: 12px;
+    }
+    .game-card p { color: var(--ink-dim); margin-bottom: 18px; max-width: 52ch; }
+    .play-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--amber);
+      color: #201406;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+      padding: 11px 20px;
+      border-radius: 10px;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    .play-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(255, 180, 84, 0.3);
+    }
+    .play-btn svg { width: 18px; height: 18px; }
+
+    .brewing {
+      margin-top: 20px;
+      border: 1px dashed var(--line);
+      border-radius: 16px;
+      padding: 22px 28px;
+      color: var(--ink-dim);
+      font-size: 0.95rem;
+    }
+    .brewing .dots::after {
+      content: "";
+      animation: dots 1.6s steps(4) infinite;
+    }
+    @keyframes dots {
+      0%   { content: ""; }
+      25%  { content: "."; }
+      50%  { content: ".."; }
+      75%  { content: "..."; }
+    }
+
+    /* ---------- about ---------- */
+    .about p { color: var(--ink-dim); max-width: 62ch; }
+    .about p + p { margin-top: 14px; }
+    .about strong { color: var(--ink); font-weight: 600; }
+
+    /* ---------- footer ---------- */
+    footer {
+      border-top: 1px solid var(--line);
+      margin-top: 40px;
+      padding: 36px 0 56px;
+      color: var(--ink-dim);
+      font-size: 0.92rem;
+    }
+    footer a { color: var(--amber); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+    .foot-row { display: flex; flex-wrap: wrap; gap: 8px 28px; margin-bottom: 14px; }
+
+    @media (max-width: 560px) {
+      .game-card { flex-direction: column; }
+      header { padding: 64px 0 48px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      * { animation: none !important; transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <header>
+      <img class="mark" src="/favicon.svg" alt="iTinyJava pixel coffee cup mark" width="96" height="96">
+      <h1 class="studio-name">iTiny<span class="accent">Java</span></h1>
+      <p class="tagline">Tiny games, well brewed.</p>
+    </header>
+
+    <section id="games">
+      <h2 class="section-label">Games</h2>
+
+      <article class="game-card">
+        <img class="game-icon" src="/assets/klozzo-icon.png" alt="Klozzo: Block Puzzle app icon">
+        <div>
+          <h3>Klozzo: Block Puzzle</h3>
+          <span class="status">Out now on Android</span>
+          <p>A calm, satisfying block puzzle. Drag pieces onto the board, clear
+             lines, and chase your best score — no timers, no pressure, just
+             flow.</p>
+          <a class="play-btn" href="https://play.google.com/store/apps/details?id=com.itinyjava.klozzo">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M3.6 1.8c-.4.2-.6.7-.6 1.3v17.8c0 .6.2 1.1.6 1.3l.1.1 10-10v-.6l-10-10zM17 8.7l-3.3 3.3 3.3 3.3 3.9-2.2c1.1-.6 1.1-1.6 0-2.2L17 8.7zM4.6 22.4l11.2-6.4-2.8-2.8-8.4 9.2zM4.6 1.6l8.4 9.2 2.8-2.8L4.6 1.6z"/>
+            </svg>
+            Get it on Google Play
+          </a>
+        </div>
+      </article>
+
+      <div class="brewing">
+        More games are brewing<span class="dots"></span>
+      </div>
+    </section>
+
+    <section id="about" class="about">
+      <h2 class="section-label">About</h2>
+      <p><strong>iTinyJava</strong> is an independent mobile game studio.
+         We make small, carefully crafted puzzle games for Android — the kind
+         you can pick up with your morning coffee and put down feeling a
+         little better than before.</p>
+      <p>Every game is built, tuned, and tested in-house, with a focus on
+         clean design, satisfying feel, and respect for your time.</p>
+    </section>
+
+    <footer>
+      <div class="foot-row">
+        <span>Contact: <a href="mailto:itinyjava@gmail.com">itinyjava@gmail.com</a></span>
+        <span><a href="/stuck-arrows/privacy/">Privacy policies</a></span>
+        <span><a href="https://play.google.com/store/apps/details?id=com.itinyjava.klozzo">Klozzo on Google Play</a></span>
+      </div>
+      <div>© 2026 iTinyJava. All rights reserved. Google Play is a trademark of Google LLC.</div>
+    </footer>
+
+  </div>
+</body>
+</html>

@@ -1,13 +1,13 @@
-# iTinyJava — privacy policies
+# iTinyJava — studio site & privacy policies
 
-Static site hosting per-game privacy policies for iTinyJava games, served via
-GitHub Pages from **https://itinyjava.github.io/**.
+Static site for the iTinyJava game studio, served via GitHub Pages from
+**https://itinyjava.github.io/**. The root landing page (`index.html`)
+represents iTinyJava as a game developer (used for Play Console business
+verification); per-game privacy policies live in subfolders.
 
 ## URLs
+- Studio landing page: `https://itinyjava.github.io/`
 - Stuck Arrows: `https://itinyjava.github.io/stuck-arrows/privacy/`
-
-The site root (`/`) intentionally has no landing page — link stores directly to
-each game's policy path.
 
 ## Add a new game's policy
 1. Create `<game-slug>/privacy/index.html` (copy `stuck-arrows/privacy/index.html` and edit the content).
