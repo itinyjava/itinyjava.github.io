@@ -46,28 +46,27 @@
   <header class="brand"><a href="/">iTinyJava<span class="dot">.</span></a></header>
 
   <h1>Privacy Policy — Stuck Arrows</h1>
-  <p class="eff">Effective date: 11 July 2026</p>
+  <p class="eff">Effective date: 8 August 2026</p>
 
-  <p class="lead">This policy explains what information the Stuck Arrows mobile game (&ldquo;the app&rdquo;, &ldquo;we&rdquo;) collects, how it is used, and the choices you have. Stuck Arrows is a free-to-play puzzle game supported by optional ads and optional in-app purchases.</p>
+  <p class="lead">This policy explains what information the Stuck Arrows mobile game (&ldquo;the app&rdquo;, &ldquo;we&rdquo;) collects, how it is used, and the choices you have. Stuck Arrows is a free-to-play puzzle game supported by ads.</p>
 
   <h2>Information we collect</h2>
-  <p>We do <strong>not</strong> ask for your name, email address, phone number, or precise location. The app collects:</p>
+  <p>We do <strong>not</strong> ask for your name, email address, phone number, or precise location, and the app has no accounts or sign-in. The app collects:</p>
   <ul>
-    <li><strong>A random device identifier.</strong> On first launch the app generates a random ID (not linked to your real identity) stored on your device and sent with analytics events so we can measure retention and improve the game.</li>
-    <li><strong>Gameplay and usage analytics.</strong> Events such as levels completed, purchases viewed, and ads shown, sent to our analytics provider (Amplitude).</li>
-    <li><strong>Advertising identifier.</strong> Our ads provider (Google AdMob) may access your device&rsquo;s advertising ID to serve and measure ads. You can reset or limit this ID in your device settings.</li>
-    <li><strong>Purchase records.</strong> In-app purchases are processed by Google Play / the Apple App Store. We receive confirmation that a purchase completed; we never receive or store your payment card details.</li>
-    <li><strong>Google account (optional).</strong> If you choose to sign in to compare scores on the leaderboard, Google Play Games provides your public player profile (display name and player ID). Signing in is entirely optional.</li>
-    <li><strong>Notifications (optional).</strong> With your permission, the app schedules local reminders (e.g. your daily streak). These are generated on your device.</li>
+    <li><strong>Gameplay and usage analytics.</strong> Events such as levels started and completed, coins earned and spent, and ads shown, sent to Google Firebase Analytics so we can measure retention and improve the game. Firebase generates a random app instance identifier for your installation — it is not linked to your real identity, and it is reset if you clear the app&rsquo;s data or uninstall it.</li>
+    <li><strong>Device and app information.</strong> Along with those events, Firebase Analytics records standard technical details such as your device model, operating system version, app version, language and country. Country is derived from your IP address; we do not collect precise or GPS location.</li>
+    <li><strong>Advertising identifier.</strong> Our ads provider (Google AdMob) may access your device&rsquo;s advertising ID to serve and measure ads. You can reset or delete this ID in your device settings. On iOS the app asks for your permission first, and declining means the identifier is not used.</li>
+    <li><strong>Crash diagnostics.</strong> If the app crashes or hits an error, Google Firebase Crashlytics records the crash — the stack trace, the device model and operating system version, and the app version — so we can fix it. These reports are tied to a random installation identifier, not to you.</li>
   </ul>
+  <p>Your game progress — levels, stars, coins, power-ups and settings — is stored <strong>only on your device</strong> and is never uploaded to us.</p>
   <p>The app is fully playable offline; the data above is only sent when you have a network connection.</p>
 
   <h2>How we use information</h2>
   <ul>
     <li>To operate and improve gameplay, difficulty, and the in-game economy.</li>
+    <li>To decide which features and levels to build next.</li>
     <li>To display ads and, where applicable, personalized ads.</li>
-    <li>To process and restore in-app purchases.</li>
-    <li>To show optional leaderboards when you sign in.</li>
+    <li>To diagnose and fix crashes.</li>
   </ul>
   <p>We do not sell your personal information.</p>
 
@@ -75,20 +74,17 @@
   <p>These services process data as described in their own privacy policies:</p>
   <ul>
     <li><strong>Google AdMob</strong> (ads) — <a href="https://policies.google.com/privacy">policies.google.com/privacy</a></li>
-    <li><strong>Amplitude</strong> (analytics) — <a href="https://amplitude.com/privacy">amplitude.com/privacy</a></li>
-    <li><strong>Google Play Games / Google Sign-In</strong> (optional leaderboards) — <a href="https://policies.google.com/privacy">policies.google.com/privacy</a></li>
-    <li><strong>Google Play Billing / Apple App Store</strong> (purchases)</li>
+    <li><strong>Google Firebase Analytics, Crashlytics and Remote Config</strong> (analytics, crash diagnostics, feature configuration) — <a href="https://policies.google.com/privacy">policies.google.com/privacy</a>, <a href="https://firebase.google.com/support/privacy">firebase.google.com/support/privacy</a></li>
   </ul>
 
   <h2>Your choices</h2>
   <ul>
-    <li><strong>Ads:</strong> purchase &ldquo;Remove Ads&rdquo; to stop interstitial ads, or reset your advertising ID in device settings to limit personalization.</li>
-    <li><strong>Notifications:</strong> deny or revoke the notification permission at any time in your device settings.</li>
-    <li><strong>Leaderboards:</strong> simply don&rsquo;t sign in; the game is fully playable without it.</li>
+    <li><strong>Personalized ads:</strong> reset or delete your advertising ID in your device settings (Android: Settings → Google → Ads) to limit ad personalization. On iOS, decline the tracking prompt or turn off tracking in Settings → Privacy &amp; Security.</li>
+    <li><strong>Analytics:</strong> you can stop all data collection at any time by uninstalling the app, which also clears the app instance identifier described above.</li>
   </ul>
 
   <h2>Data retention and deletion</h2>
-  <p>Game progress is stored <strong>locally on your device</strong> and is removed when you uninstall the app. Analytics data tied to your random device identifier is retained only as long as needed for the purposes above. To request deletion of data associated with your device identifier or Google player ID, contact us at <a href="mailto:itinyjava+stuckarrows@gmail.com">itinyjava+stuckarrows@gmail.com</a> and we will action the request.</p>
+  <p>Game progress is stored <strong>locally on your device</strong> and is removed when you uninstall the app. Analytics data tied to your random app instance identifier is retained only as long as needed for the purposes above, in line with Google Firebase&rsquo;s retention settings. To request deletion of data associated with your app instance identifier, contact us at <a href="mailto:itinyjava+stuckarrows@gmail.com">itinyjava+stuckarrows@gmail.com</a> and we will action the request.</p>
 
   <h2>Children&rsquo;s privacy</h2>
   <p>Stuck Arrows is a general-audience game and is not directed at children under 13. We do not knowingly collect personal information from children. If you believe a child has provided information, contact us and we will delete it.</p>
