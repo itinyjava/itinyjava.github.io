@@ -4,11 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>iTinyJava — Tiny Games, Well Brewed</title>
-  <meta name="description" content="iTinyJava is an independent mobile game studio making small, polished puzzle games for Android and iOS. Home of Klozzo: Block Puzzle.">
+  <meta name="description" content="iTinyJava is an independent mobile game studio making small, polished puzzle games for Android and iOS. Home of Klozzo, Stuck Arrows, Aqualo and Wordbloom.">
   <!-- Google Search Console verification tag goes here when needed -->
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <meta property="og:title" content="iTinyJava — Tiny Games, Well Brewed">
-  <meta property="og:description" content="Independent mobile game studio making small, polished puzzle games. Home of Klozzo: Block Puzzle.">
+  <meta property="og:description" content="Independent mobile game studio making small, polished puzzle games. Home of Klozzo, Stuck Arrows, Aqualo and Wordbloom.">
   <meta property="og:url" content="https://itinyjava.github.io/">
   <meta property="og:type" content="website">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -119,6 +119,7 @@
       font-weight: 700;
       margin-bottom: 6px;
     }
+    .status-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
     .game-card .status {
       display: inline-block;
       font-size: 0.78rem;
@@ -128,7 +129,11 @@
       border: 1px solid rgba(126, 224, 138, 0.25);
       border-radius: 99px;
       padding: 2px 12px;
-      margin-bottom: 12px;
+    }
+    .game-card .status.soon {
+      color: var(--amber);
+      background: rgba(255, 180, 84, 0.08);
+      border-color: rgba(255, 180, 84, 0.28);
     }
     .game-card p { color: var(--ink-dim); margin-bottom: 18px; max-width: 52ch; }
     .play-btn {
@@ -218,7 +223,10 @@
         <img class="game-icon" src="/assets/klozzo-icon.png" alt="Klozzo: Block Puzzle app icon">
         <div>
           <h3>Klozzo: Block Puzzle</h3>
-          <span class="status">Out now on Android and iOS</span>
+          <div class="status-row">
+            <span class="status">Android — out now</span>
+            <span class="status">iOS — out now</span>
+          </div>
           <p>A calm, satisfying block puzzle. Drag pieces onto the board, clear
              lines, and chase your best score — no timers, no pressure, just
              flow.</p>
@@ -236,6 +244,53 @@
               Download on the App Store
             </a>
           </div>
+        </div>
+      </article>
+
+      <article class="game-card" style="margin-top: 20px;">
+        <img class="game-icon" src="/assets/stuck-arrows-icon.png" alt="Stuck Arrows app icon">
+        <div>
+          <h3>Stuck Arrows</h3>
+          <div class="status-row">
+            <span class="status">Android — out now</span>
+            <span class="status soon">iOS — coming soon</span>
+          </div>
+          <p>Tap arrows to slide them free. A relaxing brain puzzle — find the
+             right order and clear the board.</p>
+          <div class="store-row">
+            <a class="play-btn" href="https://play.google.com/store/apps/details?id=com.stuckarrows.app">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M3.6 1.8c-.4.2-.6.7-.6 1.3v17.8c0 .6.2 1.1.6 1.3l.1.1 10-10v-.6l-10-10zM17 8.7l-3.3 3.3 3.3 3.3 3.9-2.2c1.1-.6 1.1-1.6 0-2.2L17 8.7zM4.6 22.4l11.2-6.4-2.8-2.8-8.4 9.2zM4.6 1.6l8.4 9.2 2.8-2.8L4.6 1.6z"/>
+              </svg>
+              Get it on Google Play
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <article class="game-card" style="margin-top: 20px;">
+        <img class="game-icon" src="/assets/aqualo-icon.png" alt="Aqualo app icon">
+        <div>
+          <h3>Aqualo</h3>
+          <div class="status-row">
+            <span class="status soon">Android — coming soon</span>
+            <span class="status soon">iOS — coming soon</span>
+          </div>
+          <p>Pour, sort and relax. A colorful water-sort puzzle where every
+             level is solver-checked — never unsolvable.</p>
+        </div>
+      </article>
+
+      <article class="game-card" style="margin-top: 20px;">
+        <img class="game-icon" src="/assets/wordbloom-icon.png" alt="Wordbloom app icon">
+        <div>
+          <h3>Wordbloom</h3>
+          <div class="status-row">
+            <span class="status soon">Android — coming soon</span>
+            <span class="status soon">iOS — coming soon</span>
+          </div>
+          <p>Swipe letters, grow a garden of words. Calm crossword puzzles,
+             no pressure.</p>
         </div>
       </article>
 
@@ -257,9 +312,13 @@
     <footer>
       <div class="foot-row">
         <span>Contact: <a href="mailto:itinyjava@gmail.com">itinyjava@gmail.com</a></span>
-        <span><a href="/klozzo/privacy/">Privacy policies</a></span>
-        <span><a href="https://play.google.com/store/apps/details?id=com.itinyjava.klozzo">Klozzo on Google Play</a></span>
-        <span><a href="https://apps.apple.com/app/id6788958741">Klozzo on the App Store</a></span>
+      </div>
+      <div class="foot-row">
+        <span>Privacy:</span>
+        <span><a href="/klozzo/privacy/">Klozzo</a></span>
+        <span><a href="/stuck-arrows/privacy/">Stuck Arrows</a></span>
+        <span><a href="/aqualo/privacy/">Aqualo</a></span>
+        <span><a href="/wordbloom/privacy/">Wordbloom</a></span>
       </div>
       <div>© 2026 iTinyJava. All rights reserved. Google Play is a trademark of Google LLC. Apple and App Store are trademarks of Apple Inc.</div>
     </footer>
