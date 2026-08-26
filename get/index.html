@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Get the game · iTinyJava</title>
+<link rel="icon" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@800&family=Instrument+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root { --bg:#131a2e; --card:#1a2138; --ink:#e8ebf5; --dim:#8b93ad; --amber:#ffb454; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--bg); color:var(--ink); font-family:'Instrument Sans',sans-serif;
+         min-height:100vh; display:flex; align-items:center; justify-content:center; padding:24px; }
+  .card { text-align:center; max-width:420px; }
+  h1 { font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:2rem; margin:16px 0 4px; }
+  h1 .accent { color:var(--amber); }
+  p { color:var(--dim); margin-bottom:24px; }
+  .btn { display:block; background:var(--card); border:1px solid #2a3352; border-radius:14px;
+         padding:16px; margin:12px 0; color:var(--ink); text-decoration:none; font-weight:500; font-size:1.05rem; }
+  .btn:hover { border-color:var(--amber); }
+  img.icon { width:96px; height:96px; border-radius:22px; }
+</style>
+<script>
+// ─── Registry ─────────────────────────────────────────────────────────────
+// ?g= picks the game (default klozzo), ?s= tags the traffic source.
+var GAMES = {
+  klozzo:        { name: 'Klozzo: Block Puzzle', pkg: 'com.itinyjava.klozzo',    apple: 'id6788958741', icon: '/assets/klozzo-icon.png' },
+  'stuck-arrows':{ name: 'Stuck Arrows',         pkg: 'com.stuckarrows.app',     apple: 'id6799579938', icon: '/assets/stuck-arrows-icon.png' },
+  aqualo:        { name: 'Aqualo',               pkg: 'com.itinyjava.aqualo',    apple: 'id6799559608', icon: '/assets/aqualo-icon.png' },
+  wordbloom:     { name: 'Wordbloom',            pkg: 'com.itinyjava.wordbloom', apple: 'id6799460434', icon: '/assets/wordbloom-icon.png' },
+};
+var SOURCES = { tt: 'tiktok', yt: 'youtube', ig: 'instagram', fb: 'facebook', rd: 'reddit' };
+// App Store Connect campaign links (Analytics → Acquisition → Campaigns).
+// Fill per game+source as they are created: APPLE_CAMPAIGNS.klozzo.tiktok = 'pt=XXXX&ct=tiktok&mt=8'
+var APPLE_CAMPAIGNS = {};
+
+function links() {
+  var q = new URLSearchParams(location.search);
+  var g = GAMES[q.get('g')] || GAMES.klozzo;
+  var src = SOURCES[q.get('s')] || (q.get('s') ? q.get('s').replace(/[^a-z0-9_-]/gi, '') : 'social');
+  var utm = 'utm_source%3D' + src + '%26utm_medium%3Dsocial%26utm_campaign%3D' + (q.get('c') || 'organic');
+  var play = 'https://play.google.com/store/apps/details?id=' + g.pkg + '&referrer=' + utm;
+  var apple = 'https://apps.apple.com/app/' + g.apple;
+  var camp = APPLE_CAMPAIGNS[q.get('g') || 'klozzo'];
+  if (camp && camp[src]) apple += '?' + camp[src];
+  return { game: g, play: play, apple: apple };
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+  var L = links();
+  var ua = navigator.userAgent;
+  var isAndroid = /Android/i.test(ua);
+  var isIOS = /iPhone|iPad|iPod/i.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  if (isAndroid) { location.replace(L.play); return; }
+  if (isIOS) { location.replace(L.apple); return; }
+  // Desktop: show both options
+  document.getElementById('icon').src = L.game.icon;
+  document.getElementById('name').textContent = L.game.name;
+  document.getElementById('play').href = L.play;
+  document.getElementById('apple').href = L.apple;
+  document.getElementById('card').style.visibility = 'visible';
+});
+</script>
+</head>
+<body>
+  <div class="card" id="card" style="visibility:hidden">
+    <img class="icon" id="icon" alt="" src="/assets/klozzo-icon.png">
+    <h1><span id="name">Klozzo</span></h1>
+    <p>Free · plays offline · by <span class="accent" style="color:var(--amber)">iTinyJava</span></p>
+    <a class="btn" id="play" href="#">Get it on Google Play</a>
+    <a class="btn" id="apple" href="#">Download on the App Store</a>
+  </div>
+</body>
+</html>
