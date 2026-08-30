@@ -73,5 +73,17 @@ document.addEventListener('DOMContentLoaded', function () {
     <a class="btn" id="play" href="#">Get it on Google Play</a>
     <a class="btn" id="apple" href="#">Download on the App Store</a>
   </div>
+  <noscript>
+    <!-- Link-in-bio pages get opened inside Facebook/Instagram in-app browsers and
+         the odd script blocker. Without this the card stays visibility:hidden and
+         the visitor sees a blank screen. Untagged links beat no links. -->
+    <div class="card" style="visibility:visible">
+      <img class="icon" alt="" src="/assets/klozzo-icon.png">
+      <h1>Klozzo</h1>
+      <p>Free &middot; plays offline</p>
+      <a class="btn" href="https://play.google.com/store/apps/details?id=com.itinyjava.klozzo">Get it on Google Play</a>
+      <a class="btn" href="https://apps.apple.com/app/id6788958741">Download on the App Store</a>
+    </div>
+  </noscript>
 </body>
 </html>
