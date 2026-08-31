@@ -33,9 +33,17 @@ var GAMES = {
   wordbloom:     { name: 'Wordbloom',            pkg: 'com.itinyjava.wordbloom', apple: 'id6799460434', icon: '/assets/wordbloom-icon.png' },
 };
 var SOURCES = { tt: 'tiktok', yt: 'youtube', ig: 'instagram', fb: 'facebook', rd: 'reddit' };
-// App Store Connect campaign links (Analytics → Acquisition → Campaigns).
-// Fill per game+source as they are created: APPLE_CAMPAIGNS.klozzo.tiktok = 'pt=XXXX&ct=tiktok&mt=8'
-var APPLE_CAMPAIGNS = {};
+
+// Apple's numeric provider token. ONE value activates iOS attribution for every
+// game and every source below — Apple ignores the campaign field (ct) unless it
+// is paired with pt, so while this is empty iOS installs from video are
+// invisible while Android ones are tagged fine.
+//
+// Get it once: App Store Connect → App Analytics → Acquisition → Campaigns →
+// create any campaign link, then read the pt= value out of the generated URL.
+// It is an account-level number, not per app, and it does not change. It is NOT
+// the alphanumeric Team ID and is not exposed by the App Store Connect API.
+var APPLE_PT = '';
 
 function links() {
   var q = new URLSearchParams(location.search);
@@ -44,8 +52,13 @@ function links() {
   var utm = 'utm_source%3D' + src + '%26utm_medium%3Dsocial%26utm_campaign%3D' + (q.get('c') || 'organic');
   var play = 'https://play.google.com/store/apps/details?id=' + g.pkg + '&referrer=' + utm;
   var apple = 'https://apps.apple.com/app/' + g.apple;
-  var camp = APPLE_CAMPAIGNS[q.get('g') || 'klozzo'];
-  if (camp && camp[src]) apple += '?' + camp[src];
+  // Apple gives ONE free-text campaign field where Play takes source and
+  // campaign separately, so they are joined here rather than dropping one.
+  // Apple truncates ct at 40 characters.
+  if (APPLE_PT) {
+    var ct = (q.get('c') ? src + '-' + q.get('c') : src).slice(0, 40);
+    apple += '?pt=' + encodeURIComponent(APPLE_PT) + '&ct=' + encodeURIComponent(ct) + '&mt=8';
+  }
   return { game: g, play: play, apple: apple };
 }
 
